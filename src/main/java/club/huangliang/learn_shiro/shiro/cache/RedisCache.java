@@ -48,27 +48,30 @@ public class RedisCache<K,V> implements Cache<K,V> {
 
     @Override
     public V remove(K k) throws CacheException {
-        return null;
+        return (V) getRdistemplate().opsForHash().delete(this.cacheName,k.toString());
     }
 
     @Override
     public void clear() throws CacheException {
-
+        getRdistemplate().opsForHash().delete(this.cacheName);
     }
 
     @Override
     public int size() {
-        return 0;
+
+        return getRdistemplate().opsForHash().size(this.cacheName).intValue();
     }
 
     @Override
     public Set<K> keys() {
-        return null;
+
+        return getRdistemplate().opsForHash().keys(this.cacheName);
     }
 
     @Override
     public Collection<V> values() {
-        return null;
+
+        return getRdistemplate().opsForHash().values(this.cacheName);
     }
     /*
     * 封装获取redistempalte
