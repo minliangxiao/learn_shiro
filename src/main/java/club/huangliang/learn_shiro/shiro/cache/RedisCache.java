@@ -74,7 +74,8 @@ public class RedisCache<K,V> implements Cache<K,V> {
         return getRdistemplate().opsForHash().values(this.cacheName);
     }
     /*
-    * 封装获取redistempalte
+    * 封装获取redistempalte 
+    * 重新设置redis的序列化
     * */
     private RedisTemplate getRdistemplate(){
         RedisTemplate redisTemplate = (RedisTemplate) ApplicationContextUtils.getBean("redisTemplate");
